@@ -24,6 +24,9 @@ for t in tokens:
 
 filename = splitext(file)[0] + ".py"
 
+print(f"C++ Source File: {file}")
+print(f"Output Python File: {filename}")
+
 text = ""
 currentCommand = []
 ignore = [None, "HI"]
@@ -60,6 +63,7 @@ for e, i in enumerate(stemmed_code):
         text += f"{stemmed_code[e + 3][0]} = "
         text += "input"
         ignore = [">", 2]
+        ignoreCommand = i[1]
     
     if i[1] in ["OPEN_PAREN", "OPEN_CURLY"]:
         currentCommand.append([i[1], False])
@@ -71,7 +75,11 @@ for e, i in enumerate(stemmed_code):
         Commands.reverse()
         pos = -1 * (Commands.index([l[v], False]) + 1)
         currentCommand[pos][1] = True
+    
+    print(f"{e}. Token: {i}")
 
+print("Finished coverting C++ to Python")
+print(f"Writing Python program to: {filename}")
 Py = open(filename, 'w')
 Py.write(text.strip())
 Py.close()

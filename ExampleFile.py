@@ -1,5 +1,3 @@
 print("Enter your name: ")
-a = input(a)
-print("Hello ")
+a = input()
 print(a)
-print("!")
