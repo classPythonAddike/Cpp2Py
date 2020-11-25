@@ -31,7 +31,7 @@ class Lexer():
         self.CodeParser.add('CLOSE_CURLY', r'\}')
         self.CodeParser.add('HASH', r'\#')
         self.CodeParser.add('NUM', r'\d+')
-        self.CodeParser.add('ENDL', r'\;')
+        self.CodeParser.add('ENDC', r'\;')
         self.CodeParser.add('PUT', r'<<')
         self.CodeParser.add('GET', r'>>')
         self.CodeParser.add('VARIABLE', r"[a-zA-Z_][a-zA-Z0-9_]*")
