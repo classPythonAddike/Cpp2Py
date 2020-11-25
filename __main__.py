@@ -1,6 +1,6 @@
-from Parser import Lexer
 import sys
 from os.path import splitext
+import pickle
 
 file = sys.argv[1]
 
@@ -8,7 +8,14 @@ f = open(file, 'r')
 code = f.read()
 f.close()
 
-CPPLexer = Lexer().build_Lexer()
+try:
+    with open("Lexer.pkl", "rb") as w:
+        CPPLexer = pickle.load(f)
+except:
+    from Parser import Lexer
+    CPPLexer = Lexer().build_Lexer()
+    with open("Lexer.pkl", "wb") as w:
+        pickle.dump(CPPLexer, w)
 tokens = CPPLexer.lex(code)
 
 stemmed_code = []
