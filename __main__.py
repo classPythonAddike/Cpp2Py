@@ -2,7 +2,7 @@ import sys
 from os.path import splitext
 from rply import ParserGenerator
 from tokenlist import *
-from Parser import Lexer
+from lexer import Lexer
 CPPLexer = Lexer().build_Lexer()
 
 '''
@@ -40,7 +40,7 @@ def cin(p):
 
 parser = pg.build()
 
-cde = """a + b"""
+cde = """cout << 'Hello World';"""
 parser.parse(CPPLexer.lex(cde))
 print(text)
 
