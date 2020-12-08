@@ -38,7 +38,6 @@ First download the repository from Github using
 ```git
 git clone <repository>
 ```
-If you are using vscode, then you can delete the .vscode folder
 
 Then install the requirements (rply) with
 
