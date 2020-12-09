@@ -31,6 +31,8 @@ class Lexer():
         self.CodeParser.add('CLOSE_CURLY', r'\}')
         self.CodeParser.add('HASH', r'\#')
         self.CodeParser.add('NUM', r'\d+')
+        self.CodeParser.add('TRUE', r'true')
+        self.CodeParser.add('FALSE', r'false')
         self.CodeParser.add('ENDC', r'\;')
         self.CodeParser.add('PUT', r'<<')
         self.CodeParser.add('GET', r'>>')
@@ -46,8 +48,9 @@ class Lexer():
         self.CodeParser.add('MOD', r'\%')
 
         #Ignore
-        self.CodeParser.ignore('\s+')
-        self.CodeParser.ignore('\t')
+        self.CodeParser.ignore(r'\s+')
+        self.CodeParser.ignore(r'\t')
+        self.CodeParser.ignore('\n')
     
     def build_Lexer(self):
         self.add_commands()
