@@ -17,9 +17,6 @@ print(f"C++ Source File: {file}")
 print(f"Output Python File: {filename}")
 '''
 
-text = ""
-
-
 pg = ParserGenerator(tokenlist, precedence)
 
 '''
@@ -27,43 +24,36 @@ cout << string;
 cout << integer;
 cout << boolean;
 cout << variable;
+cout << endl;
 '''
 
 @pg.production('expression : PRINT OPEN_ANG OPEN_ANG STRING ENDC')
 def cout_str(p):
-    global text
-    text += f'print({p[3].value})\n'
-    return 0
+    return f'print({p[3].value}, end = '')\n'
 
 @pg.production('expression : PRINT OPEN_ANG OPEN_ANG NUM ENDC')
 def cout_int(p):
-	global text
-	text += f"print({p[3].value})\n"
-	return 0
+	return f"print({p[3].value}, end = '')\n"
 
 @pg.production('expression : PRINT OPEN_ANG OPEN_ANG TRUE ENDC')
 def cout_true(p):
-	global text
-	text += "print(True)\n"
-	return 0
+	return "print(True, end = '')\n"
 
 @pg.production('expression : PRINT OPEN_ANG OPEN_ANG FALSE ENDC')
-def cout_false(p):	
-	global text
-	text += "print(False)\n"
-	return 0
+def cout_false(p):
+	return "print(False, end = '')\n"
 
 @pg.production('expression : PRINT OPEN_ANG OPEN_ANG VARIABLE ENDC')
 def cout_var(p):
-	global text
-	text += f"print({p[3].value})\n"
-	return 0
+	return f"print({p[3].value}, end = '')\n"
+
+@pg.production('expression : PRINT OPEN_ANG OPEN_ANG ENDL ENDC')
+def cout_endl(p):
+	return "print()"
 
 @pg.production('expression : INPUT CLOSE_ANG CLOSE_ANG VARIABLE ENDC')
 def cin(p):
-    global text
-    text += f"{p[0]} = input()\n"
-    return 0
+    return f"{p[0]} = input()\n"
 
 @pg.error
 def error_handler(token):
@@ -74,8 +64,10 @@ parser = pg.build()
 cde = """cout << true;
 cout << false;"""
 
+text = ''
+
 for i in cde.split("\n"):
-	t = parser.parse(CPPLexer.lex(i))
+	text += parser.parse(CPPLexer.lex(i))
 
 print(text)
 
