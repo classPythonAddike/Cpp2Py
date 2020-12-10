@@ -1,5 +1,6 @@
 from rply import ParserGenerator
 from tokenlist import *
+from objects import *
 
 pg = ParserGenerator(tokenlist, precedence)
 
@@ -9,30 +10,38 @@ integer
 string
 true
 false
+endl
 '''
 @pg.production('expression : VARIABLE')
 def variable(p):
-	return f"{p[0].value}"
+	return Data(p[0].value)
 
 @pg.production('expression : NUM')
 def integer(p):
-	return f"{p[0].value}"
+	return Data(p[0].value)
 
 @pg.production('expression : STRING')
 def string(p):
-	return f"{p[0].value}"
+	return Data(p[0].value)
 
 @pg.production('expression : TRUE')
 def true(p):
-	return f"{p[0].value}"
+	return Data(p[0].value)
 
 @pg.production('expression : FALSE')
 def false(p):
-	return f"{p[0].value}"
+	return Data(p[0].value)
 
-@pg.production('expression : EQUAL_TO')
-def is_equal(p):
-	return "="
+@pg.production('expression : ENDL')
+def endline(p):
+	return Data(p[0].value)
+
+'''
+expression << expression
+'''
+@pg.production('expression : expression OPEN_ANG OPEN_ANG expression')
+def i(p):
+	return Concat(p[0], p[3])
 
 '''
 cout << string;
@@ -40,6 +49,7 @@ cout << integer;
 cout << boolean;
 cout << variable;
 cout << endl;
+cout << expression;
 '''
 @pg.production('expression : PRINT OPEN_ANG OPEN_ANG STRING ENDC')
 def cout_str(p):
@@ -64,6 +74,10 @@ def cout_var(p):
 @pg.production('expression : PRINT OPEN_ANG OPEN_ANG ENDL ENDC')
 def cout_endl(p):
 	return "print()"
+
+@pg.production('expression : PRINT OPEN_ANG OPEN_ANG expression ENDC')
+def cout_exp(p):
+	return f"print({p[3].value}, end = '')"
 
 
 '''

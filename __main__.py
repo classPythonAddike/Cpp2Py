@@ -18,10 +18,8 @@ print(f"Output Python File: {filename}")
 
 cde = \
 """
-// hi hello
 cout << true;
-cout << false;
-if (a == 'b'){
+cout << fal << "hi" << hi << endl;
 """
 
 text = ''
@@ -29,7 +27,10 @@ text = ''
 print("C++ code:")
 for i in cde.strip().split("\n"):
 	print(i)
-	text += parser.parse(CPPLexer.lex(i))
+	try:
+		text += parser.parse(CPPLexer.lex(i)).value
+	except:
+		text += str(parser.parse(CPPLexer.lex(i)))
 print("\nPython Code:")
 print(text)
 

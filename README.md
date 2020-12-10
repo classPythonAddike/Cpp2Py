@@ -13,17 +13,7 @@ Watch this space to be notified of new updates.
 ## Intro
 Cpp2Py is a compiler for C++ written in Python. It converts your C++ code into Python programs.
 To avoid common errors with Cpp2Py, make sure that the following conditions are satisfied:
-1. Each line does not extend for too long. An example of this is:
-```cpp
-cout << "Hello " << name << "!! Welcome to C++!" << endl;
-```
-This should be converted to:
-```cpp
-cout << "Hello ";
-cout << name;
-cout << "!! Welcome to C++!";
-cout << endl;
-```
+1. You remove all comments
 This issue should be fixed in future releases!
 
 2. You must convert the dependencies of the file separately, except for
