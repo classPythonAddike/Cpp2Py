@@ -1,8 +1,7 @@
 import sys
 from os.path import splitext
-from rply import ParserGenerator
-from tokenlist import *
 from lexer import Lexer
+from Parser import parser
 CPPLexer = Lexer().build_Lexer()
 
 '''
@@ -17,58 +16,21 @@ print(f"C++ Source File: {file}")
 print(f"Output Python File: {filename}")
 '''
 
-pg = ParserGenerator(tokenlist, precedence)
-
-'''
-cout << string;
-cout << integer;
-cout << boolean;
-cout << variable;
-cout << endl;
-'''
-
-@pg.production('expression : PRINT OPEN_ANG OPEN_ANG STRING ENDC')
-def cout_str(p):
-    return f'print({p[3].value}, end = '')\n'
-
-@pg.production('expression : PRINT OPEN_ANG OPEN_ANG NUM ENDC')
-def cout_int(p):
-	return f"print({p[3].value}, end = '')\n"
-
-@pg.production('expression : PRINT OPEN_ANG OPEN_ANG TRUE ENDC')
-def cout_true(p):
-	return "print(True, end = '')\n"
-
-@pg.production('expression : PRINT OPEN_ANG OPEN_ANG FALSE ENDC')
-def cout_false(p):
-	return "print(False, end = '')\n"
-
-@pg.production('expression : PRINT OPEN_ANG OPEN_ANG VARIABLE ENDC')
-def cout_var(p):
-	return f"print({p[3].value}, end = '')\n"
-
-@pg.production('expression : PRINT OPEN_ANG OPEN_ANG ENDL ENDC')
-def cout_endl(p):
-	return "print()"
-
-@pg.production('expression : INPUT CLOSE_ANG CLOSE_ANG VARIABLE ENDC')
-def cin(p):
-    return f"{p[0]} = input()\n"
-
-@pg.error
-def error_handler(token):
-    raise ValueError("Ran into a %s where it wasn't expected" % token.gettokentype())
-
-parser = pg.build()
-
-cde = """cout << true;
-cout << false;"""
+cde = \
+"""
+// hi hello
+cout << true;
+cout << false;
+if (a == 'b'){
+"""
 
 text = ''
 
-for i in cde.split("\n"):
+print("C++ code:")
+for i in cde.strip().split("\n"):
+	print(i)
 	text += parser.parse(CPPLexer.lex(i))
-
+print("\nPython Code:")
 print(text)
 
 '''

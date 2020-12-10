@@ -1,13 +1,14 @@
 # Cpp2Py Compiler
 
 Warning: This project is not yet complete. If you like, you can fork or clone this repository and work on it.
-You can also open an issue if you want a feature to be added as soon as possible. Thisproject is not yet ready for distribution, it is currently written to servetesting purposes. If you wish to use it right now, you may need to tweak some of the code.
+You can also open an issue if you want a feature to be added as soon as possible. This project is not yet ready for distribution, it is currently written to servetesting purposes. If you wish to use it right now, you may need to tweak some of the code.
 (NOTE: The author of this repository is currently busy with ongoing exams, and hopes to be back on track by March 2021)
 
 ## Features of Cpp2Py Compiler
 Watch this space to be notified of new updates.
 
 - `cout`s and `cin`s
+- Comments
 
 ## Intro
 Cpp2Py is a compiler for C++ written in Python. It converts your C++ code into Python programs.

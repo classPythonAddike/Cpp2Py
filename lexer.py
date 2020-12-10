@@ -46,6 +46,7 @@ class Lexer():
         self.CodeParser.add('PROD', r'\*')
         self.CodeParser.add('DIV', r'\/')
         self.CodeParser.add('MOD', r'\%')
+        self.CodeParser.add('EQUAL_TO', r'\=')
 
         #Ignore
         self.CodeParser.ignore(r'\s+')
