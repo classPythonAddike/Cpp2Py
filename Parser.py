@@ -5,6 +5,21 @@ from objects import *
 pg = ParserGenerator(tokenlist, precedence)
 
 '''
+#include "iostream"
+#include "iostream.h"
+#include <iostream>
+#include <iostream.h> ---> Not yet coded!!
+'''
+@pg.production('expression : HASH INCL STRING')
+def incl_iostr(p):
+	return ""
+
+@pg.production('expression : HASH INCL OPEN_ANG VARIABLE CLOSE_ANG')
+def incl_var(p):
+	return ""
+
+
+'''
 variable
 integer
 string
@@ -77,7 +92,7 @@ def cout_endl(p):
 
 @pg.production('expression : PRINT OPEN_ANG OPEN_ANG expression ENDC')
 def cout_exp(p):
-	return f"print({p[3].value}, end = '')"
+	return f"print({p[3].value}, end = '')\n"
 
 
 '''
@@ -85,7 +100,7 @@ cin << variable;
 '''
 @pg.production('expression : INPUT CLOSE_ANG CLOSE_ANG VARIABLE ENDC')
 def cin(p):
-    return f"{p[0]} = input()\n"
+    return f"{p[3].value} = input()\n"
 
 
 '''

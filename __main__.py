@@ -4,7 +4,7 @@ from lexer import Lexer
 from Parser import parser
 CPPLexer = Lexer().build_Lexer()
 
-'''
+
 file = sys.argv[1]
 f = open(file, 'r')
 code = f.read()
@@ -14,7 +14,7 @@ filename = splitext(file)[0] + ".py"
 
 print(f"C++ Source File: {file}")
 print(f"Output Python File: {filename}")
-'''
+
 
 cde = \
 """
@@ -25,7 +25,7 @@ cout << fal << "hi" << hi << endl;
 text = ''
 
 print("C++ code:")
-for i in cde.strip().split("\n"):
+for i in code.strip().split("\n"):
 	print(i)
 	try:
 		text += parser.parse(CPPLexer.lex(i)).value
@@ -34,10 +34,9 @@ for i in cde.strip().split("\n"):
 print("\nPython Code:")
 print(text)
 
-'''
+
 print("Finished coverting C++ to Python")
-print(f"Writing Python program to: Example.py")
-Py = open('Example.py', 'w')
+print(f"Writing Python program to: {filename}")
+Py = open(filename, 'w')
 Py.write(text.strip())
 Py.close()
-'''
