@@ -16,7 +16,6 @@ class Lexer():
         self.CodeParser.add("STR", r'string')
         self.CodeParser.add("BOOL", r'bool')
         self.CodeParser.add("VOID", r'void')
-        self.CodeParser.add("MAIN_FUNC", r'main')
         self.CodeParser.add("ENDL", r'endl')
         self.CodeParser.add("IF", r'if')
         self.CodeParser.add("RETURN", 'return')

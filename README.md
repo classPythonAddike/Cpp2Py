@@ -8,30 +8,44 @@ You can also open an issue if you want a feature to be added as soon as possible
 Watch this space to be notified of new updates.
 
 - `cout`s and `cin`s
-- Comments
+- Comments (shorter than 5 words. Example: `# This code does nothing`) (Hope to fix it in future releases!)
+- Defining and calling functions without parameters or returns ;-)
 
 ## Intro
 Cpp2Py is a compiler for C++ written in Python. It converts your C++ code into Python programs.
 To avoid common errors with Cpp2Py, make sure that the following conditions are satisfied:
-1. You remove all comments
+1. You ensure that there is only one command in each line of code. Example:
+```cpp
+int main(){cout << "Enter your name: "; string a; cin >> a; cout << "Hello " << a << endl; return 0;}
+```
+should be converted to -
+```cpp
+int main(){
+	cout << "Enter your name: ";
+	string a;
+	cin >> a;
+	cout << "Hello" << a << endl;
+	return 0;
+}
+```
+
+2. You remove all comments
 This issue should be fixed in future releases!
 
-2. You must convert the dependencies of the file separately, except for
+3. You must convert the dependencies of the file separately, except for
 ```cpp
 #include "iostream"
 ```
-3. Some methods in C++ do not exist in Python. The Cpp2Py compiler will try to define those methods in the output Python file, but it is best if you do it manually in order to avoid mistakes.
+4. Some methods in C++ do not exist in Python. The Cpp2Py compiler will try to define those methods in the output Python file, but it is best if you do it manually in order to avoid mistakes.
 
 ## Usage
 
 First download the repository from Github using
-
 ```git
-git clone <repository>
+git clone https://github.com/classPythonAddike/Cpp2Py.git
 ```
 
 Then install the requirements (rply) with
-
 ```
 python -m pip install rply
 ```
