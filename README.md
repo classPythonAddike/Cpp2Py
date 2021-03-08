@@ -31,7 +31,7 @@ This issue should be fixed in future releases!
 ```
 4. Some methods in C++ do not exist in Python. The Cpp2Py compiler will try to define those methods in the output Python file, but it is best if you do it manually in order to avoid mistakes.
 
-## Features of Cpp2Py Compiler
+## Features of Cpp2Py Transpiler
 Watch this space to be notified of new updates.
 
 - `cout`s and `cin`s
