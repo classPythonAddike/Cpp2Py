@@ -50,7 +50,7 @@ Then install the requirements (rply) with
 $ python -m pip install rply
 ```
 
-Then compile your C++ program with -
+Then transpile your C++ program with -
 ```bash
 $ python3 __main__.py source.cpp
 ```
