@@ -225,7 +225,7 @@ print("\nPython Code:")
 print(text)
 
 
-print("\nFinished coverting C++ to Python")
+print("\nFinished transpiling C++ code.")
 print(f"Writing Python program to: {filename}")
 Py = open(filename, 'w')
 Py.write(text.strip())
